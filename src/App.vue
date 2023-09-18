@@ -23,7 +23,7 @@ import HelloWorld from './components/HelloWorld.vue'
 const test = () => {
   return 0.1 + 0.2
 }
-// console.log(test)
+console.log(test)
 </script>
 
 <style scoped>

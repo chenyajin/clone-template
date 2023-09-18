@@ -1,52 +1,64 @@
 # vue3
 
-This template should help get you started developing with Vue 3 in Vite.
+vue模版
 
-## Recommended IDE Setup
+## 添加 Husky
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+git hooks 实现提交代码前自动化校验。
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+1、安装 husky，添加 .husky 文件夹
 
 ```sh
-npm install
+# 安装 husky
+npm i husky -D
+
+# 生成 .husky 文件夹（注意：这一步操作之前，一定要执行 git init 初始化当前项目仓库，.husky 文件夹才能创建成功）
+npx husky-init install
 ```
 
-### Compile and Hot-Reload for Development
+2、修改 `.husky/pre-commit`
 
-```sh
-npm run dev
-```
+```js
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
 npm run lint
 ```
+
+配置已完成，测试结果
+
+```sh
+git add .
+git commit -m 'test husky'
+```
+
+> 当 git commit 时，它会自动检测到不符合规范的代码，如果无法自主修复就会抛出错误提示。
+
+## 添加 Commitlint
+
+团队以约定commit的规范来提交代码。
+
+1、 安装插件
+
+- @commitlint/cli Commitlint 命令行工具
+- @commitlint/config-conventional 基于 Angular 的约定规范
+
+```sh
+npm i @commitlint/config-conventional @commitlint/cli -D
+```
+
+2、添加到钩子
+
+```sh
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
+
+3、创建 .commitlintrc， 写入配置
+
+```json
+{
+  "extends": ["@commitlint/config-conventional"]
+}
+```
+
+4、配置完成，测试
