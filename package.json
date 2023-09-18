@@ -1,0 +1,20 @@
+{
+  "name": "clone-template",
+  "version": "1.0.0",
+  "description": "本仓库是为了测试脚手架而创建的。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenyajin/clone-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenyajin/clone-template/issues"
+  },
+  "homepage": "https://github.com/chenyajin/clone-template#readme"
+}
