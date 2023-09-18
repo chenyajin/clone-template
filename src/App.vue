@@ -19,6 +19,12 @@ import HelloWorld from './components/HelloWorld.vue'
 
   <RouterView />
 </template>
+<script lang="ts" setup>
+const test = () => {
+  return 0.1 + 0.2
+}
+// console.log(test)
+</script>
 
 <style scoped>
 header {
